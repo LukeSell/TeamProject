@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="1048.0" style="-fx-background-color: linear-gradient(from 100% 0% to 100% 80%, #20DDFF, #BB20DD);" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.EditPriceController">
+   <children>
+      <Label alignment="CENTER" blendMode="COLOR_BURN" contentDisplay="CENTER" layoutX="411.0" text="OAXACA">
+         <font>
+            <Font name="MV Boli" size="50.0" />
+         </font>
+      </Label>
+      <Button fx:id="homeBut" layoutX="33.0" layoutY="20.0" mnemonicParsing="false" onAction="#goHome" prefHeight="44.0" prefWidth="75.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" text="Home">
+         <font>
+            <Font name="MV Boli" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="editMenuButton" layoutX="899.0" layoutY="22.0" mnemonicParsing="false" onAction="#goEditMenu" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" text="Edit Menu">
+         <font>
+            <Font name="MV Boli" size="16.0" />
+         </font>
+      </Button>
+      <Line fx:id="line" endX="1048.0" layoutY="84.0" />
+      <Label alignment="CENTER" blendMode="COLOR_BURN" contentDisplay="CENTER" layoutX="408.0" layoutY="103.0" prefHeight="44.0" prefWidth="234.0" text="Edit Price">
+         <font>
+            <Font name="MV Boli" size="42.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="meals" layoutX="345.0" layoutY="227.0" prefHeight="45.0" prefWidth="250.0" />
+      <Button fx:id="changePrice" disable="true" layoutX="653.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnChange" prefHeight="45.0" prefWidth="111.0" text="Change">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <TextField fx:id="newPrice" layoutX="345.0" layoutY="450.0" prefHeight="61.0" prefWidth="187.0">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </TextField>
+      <Text layoutX="549.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="£">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <Button fx:id="checkButton" layoutX="653.0" layoutY="230.0" mnemonicParsing="false" onAction="#btnCheck" prefHeight="44.0" prefWidth="111.0" text="Check">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Text fx:id="orginalPrice" layoutX="345.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="250.0">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <Text layoutX="55.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" textAlignment="RIGHT" wrappingWidth="250.0">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <Text layoutX="33.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="259.240234375">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <Text layoutX="107.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expect price:" wrappingWidth="215.0">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Text>
+      <Text layoutX="101.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose food:" wrappingWidth="225.240234375">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Text>
+      <Text layoutX="78.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current meal:" textAlignment="RIGHT" wrappingWidth="234.0">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Text>
+      <Text fx:id="currentMeal" layoutX="347.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="424.240234375">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

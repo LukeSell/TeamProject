@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="812.0" prefWidth="1048.0" style="-fx-background-color: linear-gradient(from 100% 0% to 100% 80%, #20DDFF, #BB20DD);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.EditMenuController">
+   <children>
+            <Button fx:id="homeBut" layoutX="23.0" layoutY="10.0" mnemonicParsing="false" onAction="#goHome" prefHeight="44.0" prefWidth="75.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" text="Home">
+         <font>
+            <Font name="MV Boli" size="16.0" />
+         </font></Button>
+            <Line fx:id="line" endX="1048.0" layoutY="64.0" />
+            <TextField fx:id="foodTitle" layoutX="314.0" layoutY="118.0" prefHeight="40.0" prefWidth="299.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" />
+            <TextField fx:id="foodType" layoutX="314.0" layoutY="259.0" prefHeight="40.0" prefWidth="299.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" />
+            <TextField fx:id="foodNut" layoutX="314.0" layoutY="324.0" prefHeight="40.0" prefWidth="299.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" />
+            <TextField fx:id="foodAll" layoutX="314.0" layoutY="394.0" prefHeight="40.0" prefWidth="299.0" style="-fx-background-color: eaeaea; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: d8d8d8;" />
+            <TextField fx:id="foodPrice" layoutX="314.0" layoutY="461.0" prefHeight="40.0" prefWidth="299.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" />
+            <TextField fx:id="foodDesc" layoutX="314.0" layoutY="187.0" prefHeight="40.0" prefWidth="299.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" />
+            <Text fx:id="mealText" blendMode="COLOR_BURN" layoutX="56.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Meal Name : ">
+               <font>
+                  <Font name="MV Boli" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="mealAllLabel" blendMode="COLOR_BURN" layoutX="28.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Meal Allergy Info : ">
+               <font>
+                  <Font name="MV Boli" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="mealNutLabel" blendMode="COLOR_BURN" layoutX="17.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Meal Nutrition Info : ">
+               <font>
+                  <Font name="MV Boli" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="mealTypeLabel" blendMode="COLOR_BURN" layoutX="62.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Meal Type : ">
+               <font>
+                  <Font name="MV Boli" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="mealDescLabel" blendMode="COLOR_BURN" layoutX="28.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Meal Description : ">
+               <font>
+                  <Font name="MV Boli" size="23.0" />
+               </font>
+            </Text>
+            <Text fx:id="mealCostLabel" blendMode="COLOR_BURN" layoutX="63.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Meal Cost : ">
+               <font>
+                  <Font name="MV Boli" size="23.0" />
+               </font>
+            </Text>
+            <Button fx:id="addToMenuButton" layoutX="223.0" layoutY="636.0" mnemonicParsing="false" onAction="#addFood" prefHeight="53.0" prefWidth="182.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" text="Add Meal to Menu">
+               <font>
+                  <Font name="MV Boli" size="16.0" />
+               </font>
+            </Button>
+            <Label layoutX="17.0" layoutY="658.0" prefHeight="32.0" prefWidth="561.0" />
+            <Line fx:id="line2" endY="748.0" layoutX="650.0" layoutY="64.0" />
+            <Text fx:id="DeleteMealTitle" blendMode="COLOR_BURN" layoutX="740.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Meal Name">
+               <font>
+                  <Font name="MV Boli" size="23.0" />
+               </font>
+            </Text>
+            <Button fx:id="RemoveMenuButton" layoutX="724.0" layoutY="380.0" mnemonicParsing="false" onAction="#removeFoodItem" prefHeight="53.0" prefWidth="233.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" text="Remove Meal from Menu">
+         <font>
+            <Font name="MV Boli" size="16.0" />
+         </font></Button>
+            <ChoiceBox fx:id="DeleteFoodNameText" layoutX="691.0" layoutY="291.0" prefHeight="67.0" prefWidth="299.0" style="-fx-background-color: eaeaea; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: d8d8d8;" />
+            <TextField fx:id="foodTime" layoutX="314.0" layoutY="520.0" prefHeight="40.0" prefWidth="299.0" style="-fx-background-color: eaeaea; -fx-border-radius: 20; -fx-border-color: d8d8d8; -fx-background-radius: 20;" />
+            <Text fx:id="mealPrepText" blendMode="COLOR_BURN" layoutX="28.0" layoutY="548.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Food Preperation Time:">
+               <font>
+                  <Font name="MV Boli" size="23.0" />
+               </font>
+            </Text>
+      <Label alignment="CENTER" blendMode="COLOR_BURN" contentDisplay="CENTER" layoutX="428.0" layoutY="-11.0" text="OAXACA">
+         <font>
+            <Font name="MV Boli" size="50.0" />
+         </font>
+      </Label>
+      <Text fx:id="mealImageURL" blendMode="COLOR_BURN" layoutX="65.0" layoutY="609.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Food Image URL:">
+         <font>
+            <Font name="MV Boli" size="23.0" />
+         </font>
+      </Text>
+      <TextField fx:id="foodURL" layoutX="314.0" layoutY="580.0" prefHeight="40.0" prefWidth="299.0" style="-fx-background-color: eaeaea; -fx-border-radius: 20; -fx-border-color: d8d8d8; -fx-background-radius: 20;" />
+      <Button fx:id="managerButton" layoutX="852.0" layoutY="10.0" mnemonicParsing="false" onAction="#goManager" prefHeight="44.0" prefWidth="112.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" text="Manager">
+         <font>
+            <Font name="MV Boli" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="editPriceButton" layoutX="137.0" layoutY="10.0" mnemonicParsing="false" onAction="#editPrice" prefHeight="44.0" prefWidth="158.0" style="-fx-background-color: eaeaea; -fx-border-color: d8d8d8; -fx-background-radius: 20; -fx-border-radius: 20;" text="Edit Price">
+         <font>
+            <Font name="MV Boli" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

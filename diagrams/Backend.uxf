@@ -1,0 +1,2805 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1235</x>
+      <y>545</y>
+      <w>230</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>cafe::AlertNotification
+Displays a popup notificaiton.
+--
+*Attributes*
+-database = DatabaseConnection.getDatabase(): DatabaseConnection
+-connection = InternetConnection.getConnection(): InternetConnection
+--
+*Responsibilities*
++send(String username, String titleMessage, String infoMessage): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>915</x>
+      <y>2105</y>
+      <w>205</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::AwaitingPayment
+--
+-awaitingPayment = new AwaitingPayment(): AwaitingPayment
+--
+-AwaitingPayment(): ctor
++getHandler(): AwaitingPayment
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>940</x>
+      <y>270</y>
+      <w>265</w>
+      <h>345</h>
+    </coordinates>
+    <panel_attributes>cafe::CafeModel
+The overall model of the program.
+--
+*Attributes*
+-internetConnection = InternetConnection.getConnection(): InternetConnection
+-tableName = "food": String
+-database = DatabaseConnection.getDatabase(): DatabaseConnection
+-tables: ObservableList&lt;Table&gt;
+-starters: ObservableList&lt;Food&gt;
+-mains: ObservableList&lt;Food&gt;
+-desserts: ObservableList&lt;Food&gt;
+-drinks: ObservableList&lt;Food&gt;
+-order: ObservableList&lt;Order&gt;
+-table: Table
+-user: User
+-currentView: ViewController
+-foods = new HashMap(): HashMap&lt;String, Food&gt;
+-tablesmap = new HashMap(): HashMap&lt;Integer, Table&gt;
+-customers: ObservableList&lt;User&gt;
+-cafeModel = new CafeModel(): CafeModel
+--
+*Responsibilities*
+-CafeModel(): ctor
++updateNotifications(String titleMessage, String infoMessage): void
++updateOrder(Order order): void
++setViewController(ViewController currentView): void
++exit(): void
+-addListToMap(ObservableList&lt;Food&gt; mains, HashMap&lt;String, Food&gt; food): void
+-addTablesToMap(ObservableList&lt;Table&gt; tables): void
++getFoods(): HashMap&lt;String, Food&gt;
++getTablesMap(): HashMap&lt;Integer, Table&gt;
++getTables(): ObservableList&lt;Table&gt;
++getTable(): Table
++getStarters(): ObservableList&lt;Food&gt;
++getMains(): ObservableList&lt;Food&gt;
++getDesserts(): ObservableList&lt;Food&gt;
++getDrinks(): ObservableList&lt;Food&gt;
++getCafeModel(): CafeModel
++setCustomer(String username, String password): void
++getUser(): User
++getCustomers(): ObservableList&lt;User&gt;
++setUser(User user): void
++getInternetConnection(): InternetConnection
++getOrder(): ObservableList&lt;Order&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>775</x>
+      <y>1220</y>
+      <w>270</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>cafe::Config
+--
+*Attributes*
+-properties = new Properties(): Properties
+-inputStream = Main.class.getResourceAsStream("/config.properties"): InputStream
+--
+*Responsibilities*
+-Config(): ctor
++getUser(): String
++getVersion(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>915</x>
+      <y>1765</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::Confirmed
+--
+-confirmed = new Confirmed(): Confirmed
+--
+-Confirmed(): ctor
++getHandler(): Confirmed
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>95</x>
+      <y>945</y>
+      <w>335</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>cafe::Customer
+Creates a Customer user.
+--
+*Attributes*
+-tableSeated: Table
+-order: Order
+-orderNumber: int
+-tableNumber: int
+-orderStatus: int
+--
+*Responsibilities*
++Customer(String username, String password, String hostname): ctor
++Customer(String hostname): ctor
++Customer(String username, String hostname): ctor
++Customer(String username, String password, String hostname, int tableNumber, int orderNumber): ctor
++getTableNumber(): int
++getOrderNumber(): int
++getTableSeated(): Table
++setTableSeated(Table tableSeated): void
++getOrder(): Order
++setOrder(Order order): void
++getOrderStatus(): int
++setOrderStatus(int orderStatus): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1495</x>
+      <y>105</y>
+      <w>585</w>
+      <h>505</h>
+    </coordinates>
+    <panel_attributes>cafe::DatabaseConnection
+Creates a connection to the database, and adds, removes, and obtains items accordingly to the method names.
+--
+*Attributes*
+-database = new DatabaseConnection(): DatabaseConnection
+-connection = null: Connection
+--
+*Responsibilities*
+-DatabaseConnection(): ctor
++getDatabase(): DatabaseConnection
++connectToDatabase(String username, String password, String database): void
++exit(): void
++dropTable(String table): void
++createTable(String table): void
++insertIntoTable(String table, String values, String file): void
+-sqlExecuteUpdate(String sql): void
++saveWaiter(Waiter waiter): void
++saveWaiterLogin(Waiter waiter): void
++saveCustomer(Customer customer): void
++saveCustomerLogin(Customer customer): void
++saveKitchenStaff(KitchenStaff kitchenStaff): void
++saveKitchenStaffLogin(KitchenStaff kitchenStaff): void
++saveManager(Manager manager): void
++saveManagerLogin(Manager manager): void
+-readUserHostname(String sql): String
++readWaiterHostname(String tableNumber): String
++setWaiterTableNumber(String hostname, int tableNumber): void
++setCustomerTableNumber(String hostname, int tableNumber): void
++setCustomerOrderNumber(String hostname, int orderNumber): void
++setTableCustomerWaiter(String customer, String waiter, String tableNumber): void
++readCustomerHostname(String tableNumber): String
++readCustomerOrderNumber(String hostname): int
++customerList(): ObservableList&lt;Customer&gt;
++customerLoginList(): ObservableList&lt;Customer&gt;
++readKitchenStaffHostname(String tableNumber): String
++removeWaiter(String hostname): void
++removeCustomer(String hostname): void
++removeKitchenStaff(String hostname): void
+-saveOrderAdd(StringBuilder sql, ObservableList&lt;Food&gt; foods, boolean appendNext): StringBuilder
++saveOrder(Order order): void
++removeOrder(int tableNumber): boolean
+-readAnyOrder(String sql): Order
++readOrder(int orderNumber): Order
++readLastOrder(String time): Order
++writeIp(String username, String ip): void
++readIp(String username): String
++removeIp(String username): void
++tableList(): ObservableList&lt;Table&gt;
++updateTable(int tablenumber, int tableseats): void
++deleteTable(int tablenumber): void
++waiterList(): ObservableList&lt;Waiter&gt;
++waiterLoginList(): ObservableList&lt;Waiter&gt;
++orderList(): ObservableList&lt;Order&gt;
++kitchenStaffList(): ObservableList&lt;KitchenStaff&gt;
++kitchenStaffLoginList(): ObservableList&lt;KitchenStaff&gt;
++managerList(): ObservableList&lt;Manager&gt;
++managerLoginList(): ObservableList&lt;Manager&gt;
++updateMenu(String tableName, String foodItem, String foodDescription, String foodType, String foodNutrition, String foodAllergies, String foodCost, String cookingtime, String URL): void
++deleteMenu(String tableName, String foodItem): void
++getMenu(String queryType): ObservableList&lt;Food&gt;
++allTablesName(): ObservableList&lt;String&gt;
++insertIntoTable(String table, String[] values): void
++getMealPrice(String foodName): double
++updatePrice(String foodName, double f): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2130</x>
+      <y>795</y>
+      <w>190</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;&gt;
+cafe::DatabaseSetupController
+The controller for setup of the database.
+--
+*Attributes*
+-createTable: Button
+-tabName: TextField
+-tables0: ChoiceBox&lt;String&gt;
+-tables1: ChoiceBox&lt;String&gt;
+-btnHome: Button
+-attriName: TextArea
+-dropTable: Button
+-insert: Button
+-predicates: Text
+-inputAttributes: TextArea
+-check: Button
+~alert = new Alert(Alert.AlertType.CONFIRMATION): Alert
+--
+*Responsibilities*
+-initialize(): void
+-goHome(): void
+-btnCreate(): void
+-btnDrop(): void
+-btnCheck(): void
+-btnInsert(): void
+-goManager(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>1790</y>
+      <w>215</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::DessertsDelivered
+--
+-dessertsDelivered = new DessertsDelivered(): DessertsDelivered
+--
+-DessertsDelivered(): ctor
++getHandler(): DessertsDelivered
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>1620</y>
+      <w>175</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::DessertsDone
+--
+-dessertsDone = new DessertsDone(): DessertsDone
+--
+-DessertsDone(): ctor
++getHandler(): DessertsDone
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>1705</y>
+      <w>215</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::DessertsPreparing
+--
+-dessertsPreparing = new DessertsPreparing(): DessertsPreparing
+--
+-DessertsPreparing(): ctor
++getHandler(): DessertsPreparing
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>2050</y>
+      <w>195</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::DrinksDelivered
+--
+-drinksDelivered = new DrinksDelivered(): DrinksDelivered
+--
+-DrinksDelivered(): ctor
++getHandler(): DrinksDelivered
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>1875</y>
+      <w>150</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::DrinksDone
+--
+-drinksDone = new DrinksDone(): DrinksDone
+--
+-DrinksDone(): ctor
++getHandler(): DrinksDone
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>1960</y>
+      <w>195</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::DrinksPreparing
+--
+-drinksPreparing = new DrinksPreparing(): DrinksPreparing
+--
+-DrinksPreparing(): ctor
++getHandler(): DrinksPreparing
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1255</x>
+      <y>285</y>
+      <w>190</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;
+cafe::EditPriceController
+Allows the editing of prices of food items.
+--
+*Attributes*
+-homeBut: Button
+-waiterButton: Button
+-line: Line
+-changePrice: Button
+-checkButton: Button
+-orginalPrice: Text
+-newPrice: TextField
+-meals: ChoiceBox&lt;Food&gt;
+-currentMeal: Text
+-curMeal = "": String
+~alert = new Alert(Alert.AlertType.CONFIRMATION): Alert
+--
+*Responsibilities*
+-initialize(): void
++goHome(): void
+~goWaiter(): void
++btnCheck(): void
++btnChange(): void
++isNumeric(String str): boolean
++goManager(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1670</x>
+      <y>1440</y>
+      <w>465</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>cafe::Food
+--
+-meal: String
+-mealDescriptor: String
+-mealType: MealType
+-price: double
+-nutrition: ArrayList&lt;String&gt;
+-warnings: ArrayList&lt;String&gt;
+-cookingtime: double
+-url: String
+--
++Food(String meal, String mealDescriptor, MealType mealType, String nutrition, String warnings, double price, double cookingtime, String url): ctor
++getMeal(): String
++hashCode(): int
++equals(Object obj): boolean
++getURL(): String
++setMeal(String meal): void
++getNutrition(): ArrayList&lt;String&gt;
++getWarnings(): ArrayList&lt;String&gt;
++setMealDescriptor(String mealDescriptor): void
++setMealType(MealType mealType): void
++getMealType(): MealType
++getMealDescriptor(): String
++addNutrition(String nutritionInfo): void
++addWarning(String warningInfo): void
++warningToString(): String
++nutritionToString(): String
++getPrice(): double
++setPrice(long price): void
++getTime(): double
++setTime(int cookingtime): void
++toString(): String
++toLongString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>855</x>
+      <y>130</y>
+      <w>220</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>cafe::InternetConnection
+Creates a new internet connection.
+--
+*Attributes*
+-internetConnection = new InternetConnection(): InternetConnection
+-serverThread: Thread
+-ip: String
+-deviceName: String
+--
+*Responsibilities*
+-InternetConnection(): ctor
++getConnection(): InternetConnection
++open(String ip, String titleMessage, String infoMessage): void
++exit(): void
++getHost(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1125</x>
+      <y>125</y>
+      <w>100</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>cafe::InternetConnectionError
+An error that gets thrown if
+there is a connection error.
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>915</x>
+      <y>1595</y>
+      <w>105</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::Invalid
+--
+-invalid = new Invalid(): Invalid
+--
+-Invalid(): ctor
++getHandler(): Invalid
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1475</x>
+      <y>1040</y>
+      <w>230</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>cafe::Kitchen
+--
+-cafeModel = CafeModel.getCafeModel(): CafeModel
+-database = DatabaseConnection.getDatabase(): DatabaseConnection
+-drinkTime = 0: double
+-starterTime = 0: double
+-mainTime = 0: double
+-dessertTime = 0: double
+-timer: Timer
+-order: Order
+--
++prepareCourse(Order order): void
++deliverCourse(Order order): void
++KitchenTimer(double minutes): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>850</y>
+      <w>230</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>cafe::KitchenStaff
+Creates a Kitchen Staff user.
+--
+*Responsibilities*
++KitchenStaff(String username, String password, String hostname): ctor
++KitchenStaff(String username, String hostname): ctor
++KitchenStaff(String hostname): ctor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1430</x>
+      <y>645</y>
+      <w>315</w>
+      <h>305</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;&gt;
+cafe::KitchenViewController
+The controller for KitchenView.fxml
+--
+*Attributes*
+-cafeModel = CafeModel.getCafeModel(): CafeModel
+-database = DatabaseConnection.getDatabase(): DatabaseConnection
+-kitchen = new Kitchen(): Kitchen
+-notificationsList = FXCollections.observableArrayList(): ObservableList&lt;TextNotification&gt;
+-kitchenStaff = new KitchenStaff("", "", InternetConnection.getConnection().getHost()): KitchenStaff
+-homeButton: Button
+-exitButton: Button
+-refreshButton: Button
+-notificationsView: ListView&lt;TextNotification&gt;
+-orderTable: TableView&lt;Order&gt;
+-orderNumberColumn: TableColumn&lt;Order, Integer&gt;
+-tableNumberColumn: TableColumn&lt;Order, Integer&gt;
+-startersColumn: TableColumn&lt;Order, String&gt;
+-mainsColumn: TableColumn&lt;Order, String&gt;
+-dessertsColumn: TableColumn&lt;Order, String&gt;
+-drinksColumn: TableColumn&lt;Order, String&gt;
+-costColumn: TableColumn&lt;Order, String&gt;
+-timeColumn: TableColumn&lt;Order, String&gt;
+-statusColumn: TableColumn&lt;Order, String&gt;
+-orderButton: ChoiceBox&lt;Order&gt;
+-deliverCourseButton: Button
+-ordersButton: ChoiceBox&lt;Order&gt;
+-prepareCourseButton: Button
+--
+*Responsibilities*
+~btnDeliverCourse(): void
+~btnPrepareCourse(): void
+~btnExit(): void
+~btnRefresh(): void
++refresh(): void
++updateNotifications(TextNotification textNotification): void
+-removeNotification(): void
+-initialize(): void
+-btnHome(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>1510</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>cafe::Launcher
+Launches the program.
+--
+*Responsibilities*
++main(String[] args): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>495</x>
+      <y>1340</y>
+      <w>195</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>cafe::LoginViewController
+The controller for the Login FXML.
+--
+-loginButton: Button
+-guestButton: Button
+-userUsername: TextField
+-userPassword: PasswordField
+-register: Button
+-buildLabel: Label
+-roleSelect: ChoiceBox&lt;String&gt;
+-incorrectLogin = new Alert(AlertType.INFORMATION): Alert
+--
+-initialize(): void
+-btnRegister(): void
+-btnLogin(): void
+-btnGuest(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>550</x>
+      <y>1510</y>
+      <w>135</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>cafe::Main
+Launches the program in a GUI view.
+--
+*Attributes*
+-MAX_WIDTH = 1348: int
+-MAX_HEIGHT = 1012: int
+--
+*Responsibilities*
++start(Stage stage): void
++main(String[] args): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>1790</y>
+      <w>190</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::MainsDelivered
+--
+-mainsDelivered = new MainsDelivered(): MainsDelivered
+--
+-MainsDelivered(): ctor
++getHandler(): MainsDelivered
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>1620</y>
+      <w>150</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::MainsDone
+--
+-mainsDone = new MainsDone(): MainsDone
+--
+-MainsDone(): ctor
++getHandler(): MainsDone
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>1705</y>
+      <w>190</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::MainsPreparing
+--
+-mainsPreparing = new MainsPreparing(): MainsPreparing
+--
+-MainsPreparing(): ctor
++getHandler(): MainsPreparing
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>850</y>
+      <w>225</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>cafe::Manager
+Creates a Manager user.
+--
+*Responsibilities*
++Manager(String username, String password, String hostname): ctor
++Manager(String username, String hostname): ctor
++Manager(String hostname): ctor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1795</x>
+      <y>645</y>
+      <w>285</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;&gt;
+cafe::ManagerController
+The controller for ManagerView.fxml.
+--
+-database = DatabaseConnection.getDatabase(): DatabaseConnection
+-cafeModel = CafeModel.getCafeModel(): CafeModel
+-manager = new Manager("", "", InternetConnection.getConnection().getHost()): Manager
+-homeButton: Button
+-exitButton: Button
+-customerButton: ChoiceBox&lt;Customer&gt;
+-waiterButton: ChoiceBox&lt;Waiter&gt;
+-tableButton: ChoiceBox&lt;Table&gt;
+-assignButton: Button
+-editMenuButton: Button
+-toggleCustomerButton: ToggleButton
+-toggleWaiterButton: ToggleButton
+-toggleTableButton: ToggleButton
+-customerTable: TableView&lt;Customer&gt;
+-waiterTable: TableView&lt;Waiter&gt;
+-tableTable: TableView&lt;Table&gt;
+-editTablesButton: Button
+-manageDatabaseButton: Button
+-tableNumberColumn: TableColumn&lt;Table, Integer&gt;
+-seatsColumn: TableColumn&lt;Table, Integer&gt;
+-waiterColumn: TableColumn&lt;Table, String&gt;
+-statusColumn: TableColumn&lt;Table, String&gt;
+-usernameCustomerColumn: TableColumn&lt;Customer, String&gt;
+-tableCustomerAssignedColumn: TableColumn&lt;Customer, Integer&gt;
+-orderNumberColumn: TableColumn&lt;Customer, Integer&gt;
+-usernameWaiterColumn: TableColumn&lt;Waiter, String&gt;
+-tableWaiterAssignedColumn: TableColumn&lt;Waiter, Integer&gt;
+--
+-initialize(): void
+~btnAssign(): void
+~btnEditMenu(): void
+~btnEditTables(): void
+~btnExit(): void
+~btnHome(): void
+~btnManageDatabase(): void
+~btnToggleCustomer(): void
+~btnToggleTable(): void
+~btnToggleWaiter(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>755</x>
+      <y>640</y>
+      <w>290</w>
+      <h>520</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;&gt;
+cafe::MenuCategoriesViewController
+--
+*Attributes*
+-cafeModel = CafeModel.getCafeModel(): CafeModel
+-database = DatabaseConnection.getDatabase(): DatabaseConnection
+-order = new Order(): Order
+-lastFood = MealType.NONE: MealType
+-customer = new Customer("", "", InternetConnection.getConnection().getHost()): Customer
+-notificationsList = FXCollections.observableArrayList(): ObservableList&lt;TextNotification&gt;
+-undoList = FXCollections.observableArrayList(): ObservableList&lt;Food&gt;
+-currentMenu: ObservableList&lt;Food&gt;
+-filtersList = FXCollections.observableArrayList(): ObservableList&lt;ObservableList&lt;Food&gt;&gt;
+-foodBox: TextArea
+-startersCheckBox: CheckBox
+-mainsCheckBox: CheckBox
+-dessertsCheckBox: CheckBox
+-drinksCheckBox: CheckBox
+-entireMenuCheckBox: CheckBox
+-lowCalorieCheckBox: CheckBox
+-saversMenuCheckBox: CheckBox
+-menuView: Pagination
+-pagePane: Pane
+-showFoodBoxA: TextArea
+-showFoodBoxB: TextArea
+-showFoodBoxC: TextArea
+-showFoodImageA: ImageView
+-showFoodImageB: ImageView
+-showFoodImageC: ImageView
+-orderStatusLabel: Label
+-notificationsView: ListView&lt;TextNotification&gt;
+-undoView: ListView&lt;Food&gt;
+-homeButton: Button
+-resetButton: Button
+-exitButton: Button
+-waiterButton: Button
+-checkoutButton: Button
+-payButton: Button
+--
+*Responsibilities*
+-initialize(): void
+-btnHome(): void
+-btnExit(): void
+-btnOrder(): void
++refresh(): void
++updateNotifications(TextNotification textNotification): void
+-removeNotification(): void
+-removeFood(): void
+-btnReset(): void
+-btnUndo(): void
+-btnCallWaiter(): void
+-addFoodToOrderA(): void
+-addFoodToOrderB(): void
+-addFoodToOrderC(): void
+-btnPay(): void
+-showFood(int pageIndex): Node
+-menuUp(): void
+-menuDown(): void
+-printFilteredMenu(): void
+-filterStarters(): void
+-filterMains(): void
+-filterDesserts(): void
+-filterDrinks(): void
+-filterEntireMenu(): void
+-filterLowCalorie(): void
+-filterSaversMenu(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1225</x>
+      <y>1010</y>
+      <w>155</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>cafe::NewView
+Loads a new view.
+--
+*Responsibilities*
+~load(Button stageRef, String fxmlname): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1105</x>
+      <y>1500</y>
+      <w>515</w>
+      <h>370</h>
+    </coordinates>
+    <panel_attributes>cafe::Order
+--
+-starters = FXCollections.observableArrayList(): ObservableList&lt;Food&gt;
+-mains = FXCollections.observableArrayList(): ObservableList&lt;Food&gt;
+-desserts = FXCollections.observableArrayList(): ObservableList&lt;Food&gt;
+-drinks = FXCollections.observableArrayList(): ObservableList&lt;Food&gt;
+-table: Table
+-tableNumber: int
+-orderstatus = OrderStatus.UNORDERED: OrderStatus
+-orderNumber: int
+-orderPlaced: String
+-totalCost = 0: double
+-paid: boolean
+--
++Order(): ctor
++Order(int orderNumber, int tableNumber, String starters, String mains, String desserts, String drinks, double totalCost, String orderPlaced, String orderStatus): ctor
++getOrderNumber(): int
++setOrderNumber(int orderNumber): void
++setTable(Table table): void
++getTotalCost(): double
++setTotalCost(double totalCost): void
++updateTime(): void
++getTime(): String
++getStarters(): ObservableList&lt;Food&gt;
++getMains(): ObservableList&lt;Food&gt;
++getDesserts(): ObservableList&lt;Food&gt;
++getDrinks(): ObservableList&lt;Food&gt;
++getTableNumber(): int
++emptyList(): boolean
++addFood(Food food): void
++removeFood(Food food): void
++addStarter(Food food): void
++addMain(Food food): void
++addDessert(Food food): void
++addDrink(Food food): void
++removeStarter(): void
++removeMain(): void
++removeDessert(): void
++removeDrink(): void
++getOrderPlaced(): String
++setOrderPlaced(String orderPlaced): void
++removeAll(): void
++getOrderStatus(): OrderStatus
++setOrderStatus(OrderStatus orderstatus): void
++getPaid(): boolean
++setPaid(boolean paid): void
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>795</x>
+      <y>1565</y>
+      <w>70</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+cafe::OrderHandler
+--
+--
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>915</x>
+      <y>1850</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::Ordered
+--
+-ordered = new Ordered(): Ordered
+--
+-Ordered(): ctor
++getHandler(): Ordered
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>915</x>
+      <y>1935</y>
+      <w>100</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::Payed
+--
+-payed = new Payed(): Payed
+--
+-Payed(): ctor
++getHandler(): Payed
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1140</x>
+      <y>1180</y>
+      <w>285</w>
+      <h>235</h>
+    </coordinates>
+    <panel_attributes>cafe::PaymentViewController
+--
+-FoodPur: TextArea
+-cardbut: Button
+-cashbut: Button
+-paypalbut: Button
+-tipBox: TextField
+-homebut: Button
+-resetbut: Button
+-tipConfirmButton: Button
+-notificationsView: ListView&lt;TextNotification&gt;
+~alert = new Alert(Alert.AlertType.CONFIRMATION): Alert
+-cafeModel = CafeModel.getCafeModel(): CafeModel
+-database = DatabaseConnection.getDatabase(): DatabaseConnection
+-notificationsList = FXCollections.observableArrayList(): ObservableList&lt;TextNotification&gt;
+-order: Order
+-tipAmount = 0: double
+-tipPercentage = 0: int
+--
+-initialize(): void
++butHome(): void
++refresh(): void
++updateNotifications(TextNotification textNotification): void
+-removeNotification(): void
+-btnTipConfirm(): void
++butReset(): void
++butCash(): void
++butCard(): void
++butPaypal(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>1040</y>
+      <w>225</w>
+      <h>155</h>
+    </coordinates>
+    <panel_attributes>cafe::RegisterController
+Allows a user to register as either a Customer, Waiter, Kitchen Staff, or
+a Manager.
+--
+*Attributes*
+-cafeModel = CafeModel.getCafeModel(): CafeModel
+-connect = DatabaseConnection.getDatabase(): DatabaseConnection
+-resources: ResourceBundle
+-location: URL
+-registerBtn: Button
+-regPassword: PasswordField
+-regUsername: PasswordField
+-regPassword1: PasswordField
+-homeButton: Button
+~dialog = new TextInputDialog(""): TextInputDialog
+--
+*Responsibilities*
+~goHome(): void
+~btnRegister(ActionEvent event): void
+~initialize(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>915</x>
+      <y>2020</y>
+      <w>110</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::Seated
+--
+-seated = new Seated(): Seated
+--
+-Seated(): ctor
++getHandler(): Seated
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>820</x>
+      <y>285</y>
+      <w>70</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>cafe::ServerRunner
+Runs the server.
+--
+*Attributes*
+-titleMessage: String
+-infoMessage: String
+--
+*Responsibilities*
+-notifyUser(): void
++run(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>2045</y>
+      <w>205</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::StartersDelivered
+--
+-startersDelivered = new StartersDelivered(): StartersDelivered
+--
+-StartersDelivered(): ctor
++getHandler(): StartersDelivered
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>1875</y>
+      <w>165</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::StartersDone
+--
+-startersDone = new StartersDone(): StartersDone
+--
+-StartersDone(): ctor
++getHandler(): StartersDone
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>1960</y>
+      <w>205</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::StartersPreparing
+--
+-startersPreparing = new StartersPreparing(): StartersPreparing
+--
+-StartersPreparing(): ctor
++getHandler(): StartersPreparing
++handle(): void
++next(): OrderStatuS</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1475</x>
+      <y>1280</y>
+      <w>145</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>cafe::Table
+--
+-number: int
+-seats: int
+-waiter = null: User
+-customer = null: User
+-order = null: Order
+-status = TableStatus.EMPTY: TableStatus
+--
++Table(int number, int seats): ctor
++getNumber(): int
++getSeats(): int
++getWaiter(): User
++getCustomer(): User
++getStatus(): TableStatus
++setWaiter(User waiter): void
++setCustomer(User customer): void
++setStatus(TableStatus status): void
++getOrder(): Order
++setOrder(Order order): void
++hasSeats(int customers): boolean
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1125</x>
+      <y>170</y>
+      <w>320</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>cafe::TextNotification
+Displays a non-obtrustive notification.
+--
+*Attributes*
+-titleMessage: String
+-infoMessage: String
+-timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()): String
+--
+*Responsibilities*
++TextNotification(String titleMessage, String infoMessage): ctor
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>915</x>
+      <y>1680</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>cafe::Unordered
+--
+-unordered = new Unordered(): Unordered
+--
+-Unordered(): ctor
++getHandler(): Unordered
++handle(): void
++next(): OrderStatus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>125</x>
+      <y>660</y>
+      <w>275</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>cafe::User
+Creates a user.
+--
+*Attributes*
+-username: String
+-password: String
+-hostname: String
+-role: UserRole
+--
+*Responsibilities*
+#User(String username, String password, String hostName, UserRole userRole): ctor
+#User(String username, String host, UserRole userRole): ctor
+#User(String host, UserRole userRole): ctor
+#getUsername(): String
+#getHostname(): String
+#getPassword(): String
+#getRole(): UserRole
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1205</x>
+      <y>1090</y>
+      <w>195</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+cafe::ViewController
+--
+*Responsibilities*
++refresh(): void
++updateNotifications(TextNotification textNotification): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>95</x>
+      <y>1150</y>
+      <w>335</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>cafe::Waiter
+Creates a Waiter user.
+--
+*Attributes*
+-tableAssigned: Table
+-tableNumber: int
+-order: Order
+-orderStatus: int
+--
+*Responsibilities*
++Waiter(String username, String password, String hostname, Table tableAssigned, int tableNumber): ctor
++Waiter(String username, String password, String hostname): ctor
++Waiter(String hostname): ctor
++Waiter(String username, String hostname): ctor
++getTableNumber(): int
++setTableAssigned(Table tableAssigned): void
++getTableAssigned(): Table
++setOrder(Order order): void
++getOrder(): Order
++setOrderStatus(int order): void
++getOrderStatus(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1095</x>
+      <y>650</y>
+      <w>285</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;&gt;
+cafe::WaiterViewController
+The controller for waiterview.fxml
+--
+*Attributes*
+-cafeModel = CafeModel.getCafeModel(): CafeModel
+-database = DatabaseConnection.getDatabase(): DatabaseConnection
+-notificationsList = FXCollections.observableArrayList(): ObservableList&lt;TextNotification&gt;
+-order: Order
+-waiter = new Waiter("", "", InternetConnection.getConnection().getHost()): Waiter
+-homeButton: Button
+-exitButton: Button
+-selectTableButton: Button
+-finishButton: Button
+-orderDeliveredButton: Button
+-notificationsView: ListView&lt;TextNotification&gt;
+-confirmOrderButton: Button
+-orderInfo: TextArea
+-customerButton: ChoiceBox&lt;Customer&gt;
+-waiterButton: ChoiceBox&lt;Waiter&gt;
+-tablesButton: ChoiceBox&lt;Table&gt;
+-assignButton: Button
+-cancelButton: Button
+-tableList: ChoiceBox&lt;Table&gt;
+-tableAssistance = new Alert(AlertType.INFORMATION): Alert
+-tableAlreadyServed = new Alert(AlertType.INFORMATION): Alert
+-currentTableNum = 0: int
+--
+*Rsponsibilities*
+-initialize(): void
++getCurrentTableNum(): int
++refresh(): void
++updateNotifications(TextNotification textNotification): void
+-removeNotification(): void
+-btnHome(): void
+~btnExit(): void
+-btnFinishOrder(): void
+~btnAssign(): void
+-btnSelectTable(): void
+-btnOrderDelivered(): void
+~btnCancelOrder(): void
+-btnConfirmOrder(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1940</x>
+      <y>1005</y>
+      <w>140</w>
+      <h>385</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;&gt;
+cafe::editMenuController
+--
+*Attributes*
+-mealDescLabel: Text
+-mealTypeLabel: Text
+-mealText: Text
+-line: Line
+-foodTime: TextField
+-foodType: TextField
+-foodTitle: TextField
+-title: Text
+-addToMenuButton: Button
+-mealCostLabel: Text
+-homeBut: Button
+-foodPrice: TextField
+-foodAll: TextField
+-mealAllLabel: Text
+-waiterButton: Button
+-foodDesc: TextField
+-mealNutLabel: Text
+-foodNut: TextField
+-line2: Line
+-DeleteMealTitle: Text
+-DeleteFoodNameText: ChoiceBox&lt;Food&gt;
+-mealPrepText: Text
+-RemoveMenuButton: Button
+-editPriceButton: Button
+-mealImageURL: Text
+-foodURL: TextField
+-managerButton: Button
+-obtainedFoodName = null: String
+-obtainedFoodDesc = null: String
+-obtainedFoodType = null: String
+-obtainedFoodNutrition = null: String
+-obtainedFoodAllergies = null: String
+-obtainedFoodCost = null: String
+-obtainedFoodTime = null: String
+-obtainedFoodToRem = null: String
+-obtainedURL = null: String
+--
+*Responsibilities*
+-initialize(): void
+~addFood(ActionEvent event): void
+~removeFoodItem(ActionEvent event): void
+-goHome(): void
+~goManager(): void
+-editPrice(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1795</x>
+      <y>1025</y>
+      <w>130</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;&gt;
+cafe::editTablesController
+--
+*Attributes*
+-tableSeatsText: Text
+-homeBut: Button
+-tableSeats: TextField
+-removeTableButton: Button
+-waiterButton: Button
+-line: Line
+-addTableButton: Button
+-deleteTableText: Text
+-deleteTableBox: ChoiceBox&lt;Table&gt;
+-line2: Line
+-tableNumber: TextField
+-tableNumberText: Text
+-obtainedTableNumber: int
+-obtainedTableSeats: int
+--
+*Responsibilities*
+-initialize(): void
+-goHome(): void
+-goManager(): void
+~addTable(ActionEvent event): void
+~removeTable(ActionEvent event): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>1230</y>
+      <w>270</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>cafe::LoginBridge
+Handles the login information for each user.
+--
+*Attributes*
+-cafeModel = CafeModel.getCafeModel(): CafeModel
+-database = DatabaseConnection.getDatabase(): DatabaseConnection
+--
+*Responsibilities(
++loginRedirect(String username, String password, Button stageRef): void
++guestRedirect(String username, String hostname, Button stageRef): void
++registerAccountRedirect(String username, String password, Button stageRef): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>475</x>
+      <y>725</y>
+      <w>235</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>cafe::UserFactory
+Checks the login, and creates objects for each user.
+--
+*Attributes*
+-database = DatabaseConnection.getDatabase(): DatabaseConnection
+--
+*Responsibilities*
+-UserFactory(): ctor
++getWaiterLogin(String username, String password): Waiter
++getCustomerLogin(String username, String password): Customer
++getKitchenStaffLogin(String username, String password): KitchenStaff
++getManagerLogin(String username, String password): Manager</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>425</x>
+      <y>1160</y>
+      <w>65</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>425</x>
+      <y>1070</y>
+      <w>65</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>375</x>
+      <y>865</y>
+      <w>170</w>
+      <h>185</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0;130.0;110.0;320.0;110.0;320.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>125</x>
+      <y>795</y>
+      <w>50</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+&lt;&lt;Extends&gt;&gt;</panel_attributes>
+    <additional_attributes>20.0;10.0;10.0;150.0;20.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>265</x>
+      <y>795</y>
+      <w>45</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+&lt;&lt;Extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>395</x>
+      <y>795</y>
+      <w>95</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+&lt;&lt;Extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0;170.0;90.0;170.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>55</x>
+      <y>790</y>
+      <w>80</w>
+      <h>380</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+&lt;&lt;Extends&gt;&gt;</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0;10.0;740.0;80.0;740.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>605</x>
+      <y>810</y>
+      <w>15</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>375</x>
+      <y>810</y>
+      <w>130</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;90.0;60.0;90.0;60.0;30.0;240.0;30.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>405</x>
+      <y>755</y>
+      <w>80</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;380.0;10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>425</x>
+      <y>775</y>
+      <w>60</w>
+      <h>425</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;830.0;50.0;830.0;50.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1070</x>
+      <y>135</y>
+      <w>65</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;10.0;70.0;10.0;70.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>240</y>
+      <w>15</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>950</x>
+      <y>610</y>
+      <w>15</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1110</x>
+      <y>610</y>
+      <w>15</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1145</x>
+      <y>610</y>
+      <w>295</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;20.0;60.0;570.0;60.0;570.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1180</x>
+      <y>610</y>
+      <w>640</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;1260.0;50.0;1260.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1200</x>
+      <y>520</y>
+      <w>305</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>590.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2075</x>
+      <y>920</y>
+      <w>65</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2000</x>
+      <y>970</y>
+      <w>15</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1855</x>
+      <y>970</y>
+      <w>15</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1585</x>
+      <y>945</y>
+      <w>15</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1560</x>
+      <y>605</y>
+      <w>15</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1835</x>
+      <y>605</y>
+      <w>15</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1375</x>
+      <y>605</y>
+      <w>180</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>340.0;10.0;340.0;30.0;60.0;30.0;60.0;140.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1025</x>
+      <y>605</y>
+      <w>230</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>440.0;10.0;440.0;50.0;10.0;50.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1020</x>
+      <y>250</y>
+      <w>210</w>
+      <h>400</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>400.0;10.0;400.0;750.0;10.0;750.0;10.0;780.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1205</x>
+      <y>250</y>
+      <w>15</w>
+      <h>410</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;800.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1040</x>
+      <y>1020</y>
+      <w>195</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>370.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1235</x>
+      <y>975</y>
+      <w>15</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1260</x>
+      <y>945</y>
+      <w>195</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;80.0;270.0;80.0;270.0;50.0;370.0;50.0;370.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1285</x>
+      <y>970</y>
+      <w>535</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;50.0;280.0;50.0;280.0;20.0;1050.0;20.0;1050.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1040</x>
+      <y>1195</y>
+      <w>180</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>340.0;610.0;340.0;520.0;150.0;520.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>685</x>
+      <y>1255</y>
+      <w>100</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>180.0;10.0;120.0;10.0;120.0;140.0;40.0;140.0;40.0;230.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>860</x>
+      <y>1575</y>
+      <w>85</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>150.0;40.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>860</x>
+      <y>1580</y>
+      <w>65</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;220.0;90.0;220.0;90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>860</x>
+      <y>1585</y>
+      <w>65</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;380.0;80.0;380.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>860</x>
+      <y>1590</y>
+      <w>65</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;540.0;70.0;540.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>860</x>
+      <y>1595</y>
+      <w>65</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;700.0;60.0;700.0;60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>860</x>
+      <y>1600</y>
+      <w>65</w>
+      <h>445</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;870.0;50.0;870.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>860</x>
+      <y>1605</y>
+      <w>65</w>
+      <h>525</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;1030.0;40.0;1030.0;40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>445</x>
+      <y>1610</y>
+      <w>425</w>
+      <h>560</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;940.0;30.0;940.0;30.0;1100.0;830.0;1100.0;830.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>445</x>
+      <y>1610</y>
+      <w>420</w>
+      <h>555</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;790.0;40.0;790.0;40.0;1090.0;820.0;1090.0;820.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>405</x>
+      <y>1610</y>
+      <w>455</w>
+      <h>550</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;640.0;130.0;640.0;130.0;1080.0;890.0;1080.0;890.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>1605</y>
+      <w>375</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;440.0;130.0;440.0;130.0;10.0;730.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>1600</y>
+      <w>375</w>
+      <h>145</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;270.0;120.0;270.0;120.0;10.0;730.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>1595</y>
+      <w>415</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;110.0;190.0;110.0;190.0;10.0;810.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>1610</y>
+      <w>165</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;940.0;310.0;940.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>1610</y>
+      <w>160</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;760.0;300.0;760.0;300.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>645</x>
+      <y>1610</y>
+      <w>200</w>
+      <h>305</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;590.0;380.0;590.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>1610</y>
+      <w>130</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;420.0;240.0;420.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>1610</y>
+      <w>125</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;250.0;230.0;250.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>1610</y>
+      <w>160</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;300.0;80.0;300.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>885</x>
+      <y>310</y>
+      <w>65</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1525</x>
+      <y>1445</y>
+      <w>15</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1670</x>
+      <y>1280</y>
+      <w>70</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+cafe::TableStatus
+--
+_EMPTY_
+_SERVING_
+_CLEANING_
+_RESERVED_
+--
+*Responsibilities*
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>525</x>
+      <y>580</y>
+      <w>140</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+cafe::UserRole
+Types of roles that a User can be.
+--
+_CUSTOMER_
+_WAITER_
+_KITCHENSTAFF_
+_MANAGER_
+--
+*Attributes*
+-description: String
+--
+*Responsibilities*
+&lt;&lt;constructor&gt;&gt; UserRole(description: String)
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>255</x>
+      <y>630</y>
+      <w>280</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0;540.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1615</x>
+      <y>1315</y>
+      <w>65</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1285</x>
+      <y>1435</y>
+      <w>70</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+cafe::PaymentType
+--
+_CASH_
+_CARD_
+_PAYPAL_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>1300</y>
+      <w>230</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+cafe::OrderStatus
+--
+_UNORDERED_
+_SEATED_
+_ORDERED_
+_CONFIRMED_
+_STARTERSDONE_
+_STARTERSPREPARING_
+_STARTERSDELIVERED_
+_MAINSDONE_
+_MAINSPREPARING_
+_MAINSDELIVERED_
+_DESSERTSDONE_
+_DESSERTSPREPARING_
+_DESSERTSDELIVERED_
+_DRINKSDONE_
+_DRINKSPREPARING_
+_DRINKSDELIVERED_
+_AWAITINGPAYMENT_
+_PAYED_
+_CANCELLED_
+_INVALID_
+--
+*Attributes*
+-description: String
+-behaviour: OrderHandler
+--
+*Responsibilities*
+&lt;&lt;constructor&gt;&gt; OrderStatus(description: String, behaviour: OrderHandler)
++fromString(string: String): OrderStatus
++handle(): void
++next(): OrderStatus
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1025</x>
+      <y>1555</y>
+      <w>90</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;</panel_attributes>
+    <additional_attributes>160.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>1515</y>
+      <w>80</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1670</x>
+      <y>1750</y>
+      <w>145</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+cafe::MealType
+--
+_DRINK_
+_STARTER_
+_MAIN_
+_DESSERT_
+_NONE_
+--
+*Attributes*
+-description: String
+--
+*Responsibilities*
+&lt;&lt;constructor&gt;&gt; MealType(description: String)
++fromString():MealType
++toString(string: String): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1735</x>
+      <y>1695</y>
+      <w>15</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1040</x>
+      <y>1140</y>
+      <w>640</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>1260.0;700.0;810.0;700.0;810.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>495</x>
+      <y>1525</y>
+      <w>65</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>585</x>
+      <y>1460</y>
+      <w>15</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>1310</y>
+      <w>15</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>1190</y>
+      <w>15</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>605</x>
+      <y>900</y>
+      <w>15</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>495</y>
+      <w>950</w>
+      <h>1100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>1880.0;10.0;10.0;10.0;10.0;2180.0;1100.0;2180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>5</x>
+      <y>170</y>
+      <w>860</w>
+      <h>1420</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>1700.0;10.0;1530.0;10.0;1530.0;670.0;10.0;670.0;10.0;2820.0;1090.0;2820.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>10</x>
+      <y>260</y>
+      <w>1495</w>
+      <h>1325</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>2970.0;10.0;1530.0;10.0;1530.0;500.0;10.0;500.0;10.0;2630.0;1080.0;2630.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1060</x>
+      <y>610</y>
+      <w>155</w>
+      <h>515</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>290.0;1010.0;10.0;1010.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>705</x>
+      <y>1150</y>
+      <w>60</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>975</y>
+      <w>405</w>
+      <h>265</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>790.0;10.0;790.0;380.0;10.0;380.0;10.0;510.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>715</x>
+      <y>945</y>
+      <w>745</w>
+      <h>295</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1470.0;10.0;1470.0;450.0;10.0;450.0;10.0;570.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>955</y>
+      <w>1085</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>2150.0;10.0;1470.0;10.0;1470.0;440.0;10.0;440.0;10.0;550.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1305</x>
+      <y>1130</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;Implements&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1040</x>
+      <y>1050</y>
+      <w>235</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+&lt;&lt;Implements&gt;&gt;</panel_attributes>
+    <additional_attributes>360.0;80.0;360.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1155</x>
+      <y>975</y>
+      <w>60</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+&lt;&lt;Implements&gt;&gt;</panel_attributes>
+    <additional_attributes>100.0;240.0;10.0;240.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1380</x>
+      <y>905</y>
+      <w>60</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+&lt;&lt;Implements&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;370.0;10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1395</x>
+      <y>200</y>
+      <w>95</w>
+      <h>920</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>100.0;10.0;170.0;10.0;170.0;830.0;40.0;830.0;40.0;1820.0;10.0;1820.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1615</x>
+      <y>1215</y>
+      <w>200</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>10.0;140.0;60.0;140.0;60.0;100.0;380.0;100.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1950</x>
+      <y>1385</y>
+      <w>25</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1040</x>
+      <y>1130</y>
+      <w>640</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>1260.0;660.0;740.0;660.0;740.0;580.0;180.0;580.0;180.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1120</x>
+      <y>975</y>
+      <w>560</w>
+      <h>515</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>1100.0;1010.0;530.0;1010.0;530.0;910.0;10.0;910.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1615</x>
+      <y>945</y>
+      <w>135</w>
+      <h>600</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>10.0;1180.0;60.0;1180.0;60.0;850.0;100.0;850.0;100.0;600.0;250.0;600.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1615</x>
+      <y>1150</y>
+      <w>70</w>
+      <h>370</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;720.0;50.0;720.0;50.0;210.0;120.0;210.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1440</x>
+      <y>235</y>
+      <w>40</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;820.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1225</x>
+      <y>475</y>
+      <w>575</w>
+      <h>990</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>1130.0;1930.0;1130.0;1900.0;810.0;1900.0;810.0;1960.0;430.0;1960.0;430.0;980.0;340.0;930.0;340.0;300.0;10.0;300.0;10.0;20.0;80.0;20.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1615</x>
+      <y>970</y>
+      <w>215</w>
+      <h>435</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>10.0;850.0;300.0;850.0;300.0;70.0;410.0;70.0;410.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>50</y>
+      <w>2130</w>
+      <h>920</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>30.0;1820.0;10.0;1820.0;10.0;870.0;1310.0;870.0;1310.0;10.0;4240.0;10.0;4240.0;1250.0;4000.0;1250.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>35</x>
+      <y>20</y>
+      <w>2205</w>
+      <h>1255</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>120.0;2490.0;10.0;2490.0;10.0;870.0;1320.0;870.0;1320.0;10.0;4390.0;10.0;4390.0;1350.0;4090.0;1350.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1740</x>
+      <y>905</y>
+      <w>380</w>
+      <h>545</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>740.0;1070.0;740.0;980.0;70.0;980.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1085</x>
+      <y>610</y>
+      <w>595</w>
+      <h>915</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>1170.0;1810.0;1140.0;1810.0;1140.0;1770.0;380.0;1770.0;380.0;1650.0;100.0;1650.0;100.0;1210.0;10.0;1210.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1075</x>
+      <y>610</y>
+      <w>410</w>
+      <h>710</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>800.0;1400.0;770.0;1400.0;770.0;1090.0;10.0;1090.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1065</x>
+      <y>610</y>
+      <w>55</w>
+      <h>900</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>90.0;1780.0;90.0;1280.0;10.0;1280.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1750</x>
+      <y>605</y>
+      <w>25</w>
+      <h>845</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>10.0;1670.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1585</x>
+      <y>605</y>
+      <w>195</w>
+      <h>905</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+bg=black</panel_attributes>
+    <additional_attributes>10.0;1790.0;10.0;1730.0;130.0;1730.0;130.0;1610.0;370.0;1610.0;370.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>50</x>
+      <y>70</y>
+      <w>1480</w>
+      <h>1165</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>90.0;2310.0;10.0;2310.0;10.0;800.0;1320.0;800.0;1320.0;10.0;2940.0;10.0;2940.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>15</x>
+      <y>35</y>
+      <w>1530</w>
+      <h>1060</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>160.0;2100.0;10.0;2100.0;10.0;800.0;1310.0;800.0;1310.0;10.0;3040.0;10.0;3040.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>95</x>
+      <y>0</y>
+      <w>1480</w>
+      <h>890</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>110.0;1760.0;10.0;1760.0;10.0;830.0;1090.0;830.0;1090.0;10.0;2940.0;10.0;2940.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>80</y>
+      <w>915</w>
+      <h>815</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;1610.0;80.0;1610.0;80.0;10.0;1810.0;10.0;1810.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1595</x>
+      <y>605</y>
+      <w>200</w>
+      <h>685</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black
+0..*</panel_attributes>
+    <additional_attributes>10.0;1350.0;10.0;1270.0;380.0;1270.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1495</x>
+      <y>1195</y>
+      <w>70</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>cafe::Task
+extends timer task
+--
+*Responsibilities*
++run(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1560</x>
+      <y>1150</y>
+      <w>30</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>40.0;10.0;40.0;130.0;10.0;130.0</additional_attributes>
+  </element>
+</diagram>

@@ -1,0 +1,7 @@
+Chicken Burger,Chicken with lettuce and tomato in bun,MAIN,295 kcal,CONTAINS : Eggs and Gluten and Wheat and Soy,7.50
+Calamari,Deepfried squid with lemon,STARTER,175 kcal,No allergy Info,4.50
+Cheese Cake, Cheese cake with ice cream,DESSERT,150 kcal, CONTAINS : CHEESE,4.00
+Red Wine, Merlot red wine,DRINK, 50 kcal, CONTAINS : Alcohol,3.00
+Scrambled Eggs,Bread with scrambled eggs with salt and pepper,MAIN,100 kcal,CONTAINS : Eggs,4.50
+Scrambled Eggs,Bread with scrambled eggs with salt and pepper,MAIN,100 kcal,CONTAINS : Eggs,4.50
+Scrambled Eggs,Bread with scrambled eggs with salt and pepper,MAIN,100 kcal,CONTAINS : Eggs,4.50

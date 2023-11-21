@@ -1,0 +1,15 @@
+Burger,Burger with lettuce and tomato in bun,Main,295 kcal,Contains : Eggs and Gluten and Wheat and Soy,7.50,5,Burger.jpg
+Calamari,Deepfried squid with lemon,Starter,175 kcal,No allergy Info,4.50,10,calamari.jpg
+Chocolate Cake,Rich chocolate cake with ice cream,Dessert,500 kcal,Contains : Eggs Wheat and Milk,4.00,2,chocolate-cake.jpg
+Steak and Chips,100% British beef steak with chips and peas,Main,600 kcal,Contains : Egg and Wheat,12.00,10,SteakChips.jpg
+Fish Pie,Fish pie with peas carrots and gravy,Main,400 kcal,Contains : Eggs and Wheat and Fish,8.00,15,FishPie.jpg
+Apple Pie,Apple Pie with Cream,Dessert,300 kcal,Contains : Wheat and Milk and Eggs,5.00,2,ApplePie.jpg
+Cheesy Garlic Bread,Garlic Bread with melted cheese,Starter,200 kcal,Contains : Cheese and wheat and soy and milk,2.00,2,garlicbread.png
+Ice Cream,Assortment of Ice Creams with flake,Dessert,425 kcal,Contains : Milk and Soy,2.50,2,IceCream.jpg
+Curry,Spicy Curry,Main,400 kcal,Contains : Nuts,6.00,10,Curry.jpg
+Steak Pie,Steak Pie with gravy,Main,200 kcal,Contains : Wheat,5.00,20,SteakPie.jpg
+Chicken and Chips,Seasoned Chichen with Chips,Main,600 kcal,Contains : Eggs,11.00,10,ChickenAndChips.jpg
+Scrambled Eggs,Bread with scrambled eggs with salt and pepper,Main,100 kcal,Contains : Eggs,4.50,5,Scrambled-Eggs.jpg
+Cheese Cake, Cheese cake with ice cream,Dessert,150 kcal, Contains : CHEESE,4.00,2,cheesecake.jpg
+Red Wine, Merlot red wine,Drink, 50 kcal, Contains : Alcohol,3.00,0.5,RedWine.jpeg
+Diet Coke, Fizzy Coke with no sugar,Drink,30 kcal, No Allergy Warning,2.50,0.25,Coke.jpg
